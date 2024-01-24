@@ -14,7 +14,6 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators, ɵValue} from "
 export class ProductlistComponent  {
   @Input() productlist: Product[] = [];
   constructor() {
-
   }
   @Output() newItemEvent = new EventEmitter<number>();
 
@@ -59,8 +58,6 @@ export class ProductlistComponent  {
     this.cdr.detectChanges();
   }
 
-
-
   addProduct() {
     let temp: {
       id: number;
@@ -91,7 +88,6 @@ export class ProductlistComponent  {
   @Output() productadd = new EventEmitter<Product>();
 
   addProducttoCart(product: Product) {
-    console.log(product);
     product.inventory--;
     this.productadd.emit(product);
   }

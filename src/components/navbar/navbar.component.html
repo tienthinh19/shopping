@@ -1,7 +1,8 @@
 <div class="bar">
   @for (item of menuItems; track item.name){
     <ul class="listul">
-      <li><a (click)="selectItem(item)" [class]="item.active?'active':''">{{ item.name }}
+      <li>
+        <a (click)="selectItem(item)" [class]="item.active?'active':''" [routerLink]="item.router">{{ item.name }}
         <i [class]="item.classIcon"></i>
       </a></li>
     </ul>

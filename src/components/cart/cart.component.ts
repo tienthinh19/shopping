@@ -1,7 +1,6 @@
 import {Component, Input} from "@angular/core";
-
-
 import {Product} from "../../model/item.model";
+import {CartService} from "../../app/service/cart.service";
 
 @Component({
   selector: 'app-cart',
@@ -11,13 +10,12 @@ import {Product} from "../../model/item.model";
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-  @Input() cartList: Product[] = [];
 
-  constructor() {
+  constructor(public cardService: CartService) {
   }
 
   total=0
   pay(){
-    this.total = this.cartList.reduce((acc, item) => acc + parseInt(item.cost )* item.stock, 0);
+    this.total = this.cardService.addCartList.reduce((acc, item) => acc + parseInt(item.cost )* item.stock, 0);
   }
 }

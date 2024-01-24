@@ -3,7 +3,7 @@
   width: $card_width;
   height: $card_height;
   border-radius: 10px;
-  background-color: #ddd;
+  background-color: white;
   color: #333;
   font-family: "Fjalla One", sans-serif;
   text-align: center;
@@ -32,7 +32,7 @@ $card_height: 500px;
     padding-top: 30px;
     padding-bottom: 30px;
     h1 {
-      color: #ffe;
+      color: white;
     }
   }
 
@@ -56,11 +56,15 @@ $card_height: 500px;
   .card {
 
     @include card;
-    border: 1px solid black;
+    &:hover{
+      border: 1px solid black;
+      background-color: white;
+    }
     transform: rotateY(0deg);
     p {
       padding-top: 30px;
       font-size: 24px;
+      color: #111111;
     }
     .image img {
       width: $card_width;
@@ -70,12 +74,14 @@ $card_height: 500px;
       width: $card_width;
       height: 50px;
       top: 80%;
-      background-color:  #2aa86b;
-      color: #ddd;
+      background-color:  white;
+
+      color: white;
       position: absolute;
       transition: all 0.7s;
       .price {
         width: $card_width / 2;
+        color: red;
         height: 50px;
         line-height: 50px;
         font-size: 24px;
@@ -86,7 +92,7 @@ $card_height: 500px;
         height: $card_height / 5;
         line-height: $card_height / 5;
         font-size: 24px;
-        border-left: solid 1px #ddd;
+        border-left: solid 1px white;
         float: left;
         cursor: pointer;
         transition: all 0.3s;
@@ -100,8 +106,8 @@ $card_height: 500px;
         height: $card_height / 5;
         padding: 10px;
         line-height: 25px;
-        border-top: solid 1px #ddd;
-        border-bottom: solid 1px #ddd;
+        border-top: solid 1px white;
+        border-bottom: solid 1px white;
       }
       .cancel {
         width: $card_width / 5 * 2;
@@ -121,8 +127,9 @@ $card_height: 500px;
         height: $card_height / 5;
         line-height: $card_height / 5;
         font-size: 24px;
+
         background-color: #2aa86b;
-        border-left: solid 1px #ddd;
+        border-left: solid 1px white;
         float: left;
         cursor: pointer;
         transition: all 0.3s;
@@ -149,7 +156,7 @@ $card_height: 500px;
   .icon {
     display: none;
     i {
-      color: #ddd;
+      color: white;
       position: absolute;
       top: 8px;
       left: 8px;
@@ -159,7 +166,7 @@ $card_height: 500px;
       height: 80px;
       line-height: 80px;
       background-color: #a82d2a;
-      color: #ddd;
+      color: white;
       position: absolute;
       top: 0px;
       left: -40px;
@@ -174,8 +181,8 @@ $card_height: 500px;
   justify-content: center;
   gap: 20px;
   button{
-    background-color:  #2aa86b;
-    color: #ddd;
+    background-color:  white;
+    color: black;
     border: none;
     padding: 5px 5px;
     // border-radius: 5px;
@@ -213,7 +220,7 @@ dialog[open] {
 
 dialog h2 {
   margin: 0 0 30px;
-  color: #eee;
+  color: white;
 }
 .form {
   display: flex;

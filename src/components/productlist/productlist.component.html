@@ -29,15 +29,7 @@
 
 <dialog #appDialog>
   <form class="form" [formGroup]="itemForm" (ngSubmit)="addProduct()">
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter name" />
-    </div>
-    <div class="form-group">
-      <label for="describtion">Describtion</label>
-      <input type="text" class="form-control" id="describtion" formControlName="describtion"
-             placeholder="Enter describtion" />
-    </div>
+
     <div class="form-group">
       <label for="cost">Cost</label>
       <input type="number" class="form-control" id="cost" formControlName="cost" placeholder="Enter cost" />

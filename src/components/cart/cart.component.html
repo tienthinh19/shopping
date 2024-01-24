@@ -9,7 +9,7 @@
     <label class="product-quantity">Quantity</label>
   </div>
 
-  @for(item of cartList; track item.id){
+  @for(item of this.cardService.addCartList; track item.id){
     <div class="product">
       <div class="product-image">
         <img src="{{item.image}}">
