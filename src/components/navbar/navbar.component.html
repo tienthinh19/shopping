@@ -1,0 +1,75 @@
+<div class="bar">
+  @for (item of menuItems; track item.name){
+    <ul class="listul">
+      <li><a (click)="selectItem(item)" [class]="item.active?'active':''">{{ item.name }}
+        <i [class]="item.classIcon"></i>
+      </a></li>
+    </ul>
+  }
+  <a  (click)="openDialog()" href="#cart" id="add">ADD</a>
+</div>
+
+
+<dialog #appDialog >
+  <form class="form" [formGroup]="itemForm"  (ngSubmit)="addProduct()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+        placeholder="Enter name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="describtion">Describtion</label>
+      <input
+        type="text"
+        class="form-control"
+        id="describtion"
+        formControlName="describtion"
+        placeholder="Enter describtion"
+      />
+    </div>
+    <div class="form-group">
+      <label for="cost">Cost</label>
+      <input
+        type="number"
+        class="form-control"
+        id="cost"
+        formControlName="cost"
+        placeholder="Enter cost"
+      />
+    </div>
+    <div class="form-group">
+      <label for="inventory">Inventory</label>
+      <input
+        type="number"
+        class="form-control"
+        id="inventory"
+        formControlName="inventory"
+        placeholder="Enter inventory"
+      />
+    </div>
+    <div class="form-group">
+
+      <label for="image">ImgSrc</label>
+      <input
+        type="text"
+        class="form-control"
+        id="image"
+        formControlName="image"
+        placeholder="Enter Image"
+      />
+    </div>
+  </form>
+  <button mat-button mat-dialog-close (click)="closeDialog()">Close</button>
+  <button
+    (click)="addProduct()"
+    mat-flat-button
+    color="primary"
+  >
+    Submit
+  </button>
+</dialog>

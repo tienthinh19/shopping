@@ -1,0 +1,6 @@
+
+<app-navbar (newItemEvent)=" addItem($event) "></app-navbar>
+<app-productlist [productlist]="productList" (newItemEvent)="delete($event)" (productadd)="addToCart($event)">
+</app-productlist>
+<app-cart [cartList]="addCartList"></app-cart>
+

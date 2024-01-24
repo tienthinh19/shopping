@@ -1,0 +1,237 @@
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+@mixin card {
+  width: $card_width;
+  height: $card_height;
+  border-radius: 10px;
+  background-color: #ddd;
+  color: #333;
+  font-family: "Fjalla One", sans-serif;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  box-shadow: rgba(10, 18, 20, 0.54902) 0px 4px 13px 3px;
+  backface-visibility: hidden;
+}
+
+$card_width: 250px;
+$card_height: 500px;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wrapper {
+  background-color: #333;
+  background: linear-gradient(#6ba1a5, #fadecc);
+  perspective: 700px;
+  .title {
+    text-align: center;
+    font-family: "Fjalla One", sans-serif;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    h1 {
+      color: #ffe;
+    }
+  }
+
+  .copyright {
+    color: #333;
+    font-family: "Fjalla One", sans-serif;
+    margin-top: -$card_height;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+}
+.content {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  transition: all 0.7s ease;
+  transform-style: preserve-3d;
+  .card {
+
+    @include card;
+    border: 1px solid black;
+    transform: rotateY(0deg);
+    p {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      font-size: 24px;
+    }
+    .image img {
+      width: $card_width;
+      height: 250px;
+    }
+    .menu {
+      width: $card_width;
+      height: 50px;
+      top: 80%;
+      background-color: #6ba1a5;
+      color: #ddd;
+      position: absolute;
+      transition: all 0.7s;
+      .price {
+        width: $card_width / 2;
+        height: 50px;
+        line-height: 50px;
+        font-size: 24px;
+        float: left;
+      }
+      .buy {
+        width: $card_width / 2;
+        height: $card_height / 5;
+        line-height: $card_height / 5;
+        font-size: 24px;
+        border-left: solid 1px #ddd;
+        float: left;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .buy:hover {
+        background-color: #426366;
+      }
+      .howmany {
+        clear: both;
+        width: $card_width;
+        height: $card_height / 5;
+        padding: 10px;
+        line-height: 25px;
+        border-top: solid 1px #ddd;
+        border-bottom: solid 1px #ddd;
+      }
+      .cancel {
+        width: $card_width / 5 * 2;
+        height: $card_height / 5;
+        line-height: $card_height / 5;
+        font-size: 24px;
+        background-color: #a82c2a;
+        float: left;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .cancel:hover {
+        background-color: #7f2220;
+      }
+      .addcart {
+        width: $card_width / 5 * 3;
+        height: $card_height / 5;
+        line-height: $card_height / 5;
+        font-size: 24px;
+        background-color: #2aa86b;
+        border-left: solid 1px #ddd;
+        float: left;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .addcart:hover {
+        background-color: #207f51;
+      }
+    }
+  }
+  .card_back {
+    @include card;
+    z-index: -1;
+    top: -$card_height;
+    transform: rotateY(180deg);
+    i {
+      padding-top: $card_height / 3;
+      color: #2aa86b;
+    }
+    p {
+      font-size: 32px;
+      color: #2aa86b;
+    }
+  }
+  .icon {
+    display: none;
+    i {
+      color: #ddd;
+      position: absolute;
+      top: 8px;
+      left: 8px;
+    }
+    .icon_bg {
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      background-color: #a82d2a;
+      color: #ddd;
+      position: absolute;
+      top: 0px;
+      left: -40px;
+      transform: skewX(-45deg);
+    }
+  }
+}
+.btn{
+  margin-top: 70px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  button{
+    background-color: #6ba1a5;
+    color: #ddd;
+    border: none;
+    padding: 5px 5px;
+    // border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover{
+      background-color: #426366;
+    }
+  }
+
+}
+
+
+//
+dialog {
+  text-align: center;
+  background-color: black;
+  color: black;
+  border: none;
+  padding: 30px;
+  border-radius: 5px;
+  width: 400px;
+  max-width: 80%;
+  button{
+    background-color: white;
+    color: black;
+    margin: 0 10px;
+    width: 50px;
+  }
+}
+dialog[open] {
+  animation: toggle-modal 0.3s ease-in-out;
+}
+
+dialog h2 {
+  margin: 0 0 30px;
+  color: #eee;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .form-group {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+
+    input {
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}

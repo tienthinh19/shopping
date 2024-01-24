@@ -1,0 +1,30 @@
+<h1>Shopping Cart</h1>
+
+<div class="shopping-cart">
+
+  <div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Quantity</label>
+  </div>
+
+  @for(item of cartList; track item.id){
+    <div class="product">
+      <div class="product-image">
+        <img src="{{item.image}}">
+      </div>
+      <div class="product-details">
+        <div class="product-title">{{item.name}}</div>
+        <p class="product-description">{{item.describtion}}</p>
+      </div>
+      <div class="product-price">{{item.cost}}</div>
+      <div class="product-quantity">
+        {{item.stock}}
+      </div>
+    </div>
+
+  }
+  <button class="checkout" (click)="pay()">Checkout</button>
+  <div class="product-line-price">Total: {{ total }}</div>
+</div>
