@@ -20,17 +20,17 @@ export interface menuItem{
 export class NavbarComponent {
   menuItems = [
     {
-      name: "Home",classIcon:"fa-solid fa-house",active:true
+      name: "HOME",classIcon:"fa-solid fa-house",active:true
     },
-    {name: "news",classIcon:"fa-regular fa-newspaper", active: false},
+    {name: "NEWS",classIcon:"fa-regular fa-newspaper", active: false},
     {
-      name:"contact",classIcon:"fa-solid fa-phone",active:false
-    },
-    {
-      name:"about",classIcon:"fa-solid fa-info",active: false
+      name:"CONTACT",classIcon:"fa-solid fa-phone",active:false
     },
     {
-      name:"cart",classIcon:"fa-solid fa-cart-shopping",active: false
+      name:"ABOUT",classIcon:"fa-solid fa-info",active: false
+    },
+    {
+      name:"CART",classIcon:"fa-solid fa-cart-shopping",active: false
     }
   ]
   selectItem (Itemseletc : menuItem){
