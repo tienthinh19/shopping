@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "shopping-7fdfd": {
+      "hosting": {
+        "shopping": [
+          "shopping-7fdfd"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "shopping-7fdfd"
+  }
+}

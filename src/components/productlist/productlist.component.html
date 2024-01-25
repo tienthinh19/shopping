@@ -1,23 +1,32 @@
-<div class="content">
-  @for (item of productlist; track item.name) {
-    @if(item.inventory>0){
-      <div class="card">
-        <p>{{ item.name }}</p>
-        <p> {{ item.describtion }}</p>
+<div class="content" >
+  @for (item of cardServices.productList; track item['name']) {
+    @if(item['inventory']>0){
+      <div class="card"
+
+      >
+        <p>{{ item['name'] }}</p>
+        <p> {{ item['describtion'] }}</p>
         <div class="image">
-          <img src="{{item.image}}" alt="book" width="250" />
+          <img src="{{item['image']}}" alt="book" width="250" />
         </div>
         <div class="menu">
           <div class="price">
-            ${{ item.cost }}
+            ${{ item['cost'] }}
           </div>
           <div class="price">
-            {{ item.inventory }}
+            {{ item['inventory'] }}
           </div>
           <div class="btn">
-            <button (click)="addProducttoCart(item)">Add to Cart!</button>
-            <button (click)="openDialog(item)">Edit</button>
-            <button (click)=" delete( item.id)">Delete</button>
+            <button
+              >Add to Cart!
+            </button>
+            <button
+              (click)="openDialog(item)">Edit
+            </button>
+            <button
+    (click)="delete(item)"
+            >Delete
+            </button>
           </div>
         </div>
       </div>
@@ -28,7 +37,7 @@
 
 
 <dialog #appDialog>
-  <form class="form" [formGroup]="itemForm" (ngSubmit)="addProduct()">
+  <form class="form" [formGroup]="itemForm" (ngSubmit)="updateProduct(itemForm)">
 
     <div class="form-group">
       <label for="cost">Cost</label>
@@ -46,7 +55,7 @@
     </div>
   </form>
   <button mat-button mat-dialog-close (click)="closeDialog()">Close</button>
-  <button (click)="updateProduct()" mat-flat-button color="primary">
+  <button (click)="updateProduct(itemForm)" mat-flat-button color="primary">
     Submit
   </button>
 </dialog>

@@ -1,7 +1,9 @@
 import {ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, ɵValue} from "@angular/forms";
 import {Product} from "../../model/item.model";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {CartService} from "../../app/service/cart.service";
+
 
 export interface menuItem{
   name:string;
@@ -41,7 +43,7 @@ export class NavbarComponent {
     Itemseletc.active=true;
   }
   itemForm= new FormGroup({
-
+    // id : Math.floor(Math.random() * 1000),
     name : new FormControl(''),
     describtion : new FormControl(''),
     cost : new FormControl(''),
@@ -66,22 +68,26 @@ export class NavbarComponent {
 
   addProduct() {
     let temp: {
+       id:number ;
       image?: ɵValue<FormControl<string | null>>;
       cost?: ɵValue<FormControl<string | null>>;
       name?: ɵValue<FormControl<string | null>>;
-      id: number;
+
       inventory?: ɵValue<FormControl<string | null>>;
       describtion?: ɵValue<FormControl<string | null>>
     }={
-      id:Math.floor(Math.random()*1000),
+       id : Math.floor(Math.random() * 1000),
       ...this.itemForm.value
     }
 
     this.dialog.nativeElement.close();
 
     // @ts-ignore
-    this.newItemEvent.emit(temp);
+    this.cardServices.add(temp);
     console.log(temp);
   }
+constructor(public router:Router,public cardServices:CartService) {
+
+}
 
 }

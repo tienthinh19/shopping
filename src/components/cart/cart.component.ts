@@ -16,6 +16,6 @@ export class CartComponent {
 
   total=0
   pay(){
-    this.total = this.cardService.addCartList.reduce((acc, item) => acc + parseInt(item.cost )* item.stock, 0);
+    // this.total = this.cardService.addCartList.reduce((acc, item) => acc + parseInt(item.cost )* item.stock, 0);
   }
 }
