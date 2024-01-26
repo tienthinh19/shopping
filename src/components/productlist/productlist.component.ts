@@ -102,9 +102,32 @@ id:item['id'],
 //     this.productadd.emit(product);
 //   }
 //
-   updateProduct(item:DocumentData) {
-     
-     console.log(item)
-    this.cardServices.update(item)
+
+   updateProduct() {
+
+   let temp : Product={
+     id:this.itemForm.value.id || 0 ,
+     image: this.itemForm.value.image || '',
+     name: this.itemForm.value.name || '',
+     cost: this.itemForm.value.cost || '',
+
+     inventory:this.itemForm.value.inventory || 0 ,
+     describtion: this.itemForm.value.describtion || '',
+     stock: this.itemForm.value.stock || 0 ,
+   };
+  const index=this.cardServices.productList.findIndex((item)=> item['id']===temp.id);
+  if (index != -1){
+    this.cardServices.productList[index]=temp;
+
   }
+  this.updateItem(temp);
+  this.closeDialog();
+  }
+updateItem(item:Product){
+    this.cardServices.update(item);
+}
+getProductById(id:number){
+    console.log(id);
+    this.cardServices.getItemById(id)
+}
  }

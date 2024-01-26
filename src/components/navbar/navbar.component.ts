@@ -34,6 +34,9 @@ export class NavbarComponent {
     },
     {
       name:"CART",classIcon:"fa-solid fa-cart-shopping",active: false,router:'/card'
+    },
+    {
+      name:"ADMIN-PRODUCT",classIcon:"fa-solid fa-user-tie",active: false,router:'/admin_product'
     }
   ]
   selectItem (Itemseletc : menuItem){
@@ -42,50 +45,12 @@ export class NavbarComponent {
     }
     Itemseletc.active=true;
   }
-  itemForm= new FormGroup({
-    // id : Math.floor(Math.random() * 1000),
-    name : new FormControl(''),
-    describtion : new FormControl(''),
-    cost : new FormControl(''),
-    inventory: new FormControl(''),
-    image: new FormControl(''),
-  })
+
 
   @Input() cartList: Product[] = [];
   @Output() newItemEvent = new EventEmitter<Product>();
 
-  @ViewChild('appDialog', { static: true })
-  dialog!: ElementRef<HTMLDialogElement>;
-  cdr = inject(ChangeDetectorRef);
-  openDialog() {
-    this.dialog.nativeElement.showModal();
-    this.cdr.detectChanges();
-  }
-  closeDialog() {
-    this.dialog.nativeElement.close();
-    this.cdr.detectChanges();
-  }
 
-  addProduct() {
-    let temp: {
-       id:number ;
-      image?: ɵValue<FormControl<string | null>>;
-      cost?: ɵValue<FormControl<string | null>>;
-      name?: ɵValue<FormControl<string | null>>;
-
-      inventory?: ɵValue<FormControl<string | null>>;
-      describtion?: ɵValue<FormControl<string | null>>
-    }={
-       id : Math.floor(Math.random() * 1000),
-      ...this.itemForm.value
-    }
-
-    this.dialog.nativeElement.close();
-
-    // @ts-ignore
-    this.cardServices.add(temp);
-    console.log(temp);
-  }
 constructor(public router:Router,public cardServices:CartService) {
 
 }

@@ -1,30 +1,40 @@
-<!--<h1>Shopping Cart</h1>-->
+<div class="container">
+  @if (this.cardService.cart.length == 0) {
+    <h2 style="margin-top: 20px; text-align: center;">Không có sản phẩm trong giỏ hàng</h2>
+  }@else {
+    <h2 style="margin-top: 20px; text-align: center;">Danh sách sản phẩm trong giỏ hàng: </h2>
+    @for (item of this.cardService.cart; track item.id) {
+      <div class="item">
+        <img class="img" [src]="item.image" />
+        <div class="info">
+          <h2>Tên sản phẩm: {{item.name}}</h2>
+          <p>Mô tả: {{item.describtion}}</p>
+          <p>Giá: {{item.cost}} VNĐ</p>
+          <div class="quantity">
+            <button (click)="this.cardService.decrease(item)"
+                    style="padding: 4px 20px; border-radius: 12px; border: red;background-color: red;">Giảm</button>
+            <p>Số lượng: {{item.stock}}</p>
+            @if (item.inventory <=0) { <button disabled="true" (click)="this.cardService.increase(item)"
+                                             style="padding: 4px 20px; border-radius: 12px; border: none;background-color: red;">
+              Tăng</button>
+            }@else {
+              <button (click)="this.cardService.increase(item)"
+                      style="padding: 4px 20px; border-radius: 12px; border: red;background-color: red;">Tăng</button>
+            }
+            <p>Thành tiền: {{parseInt(item.cost)*item.stock}} VNĐ</p>
+          </div>
+        </div>
+        <div class="remove">
+          <button (click)="this.cardService.deleteItemInCart(item)">X</button>
+        </div>
+      </div>
+    }
+    <div class="right">
+      <p>Tổng số tiền phải thanh toán là: {{this.cardService.payment()}} VNĐ</p>
+      <button (click)="handleClick()"
+              style="width: 300px; padding: 20px 20px; border-radius: 12px; background-color: red; color: white; font-size: 14px;">Thanh
+        toán</button>
+    </div>
+  }
 
-<!--<div class="shopping-cart">-->
-
-<!--  <div class="column-labels">-->
-<!--    <label class="product-image">Image</label>-->
-<!--    <label class="product-details">Product</label>-->
-<!--    <label class="product-price">Price</label>-->
-<!--    <label class="product-quantity">Quantity</label>-->
-<!--  </div>-->
-
-<!--  @for(item of this.cardService.addCartList; track item.id){-->
-<!--    <div class="product">-->
-<!--      <div class="product-image">-->
-<!--        <img src="{{item.image}}">-->
-<!--      </div>-->
-<!--      <div class="product-details">-->
-<!--        <div class="product-title">{{item.name}}</div>-->
-<!--        <p class="product-description">{{item.describtion}}</p>-->
-<!--      </div>-->
-<!--      <div class="product-price">{{item.cost}}</div>-->
-<!--      <div class="product-quantity">-->
-<!--        {{item.stock}}-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--  }-->
-<!--  <button class="checkout" (click)="pay()">Checkout</button>-->
-<!--  <div class="product-line-price">Total: {{ total }}</div>-->
-<!--</div>-->
+</div>

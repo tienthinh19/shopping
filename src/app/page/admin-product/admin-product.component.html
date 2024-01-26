@@ -1,0 +1,171 @@
+<button
+  size="m"
+  tuiButton
+  tuiHint="Some text"
+  tuiHintDirection="top"
+  type="button"
+  (click)="showDialog()"
+>
+  Show
+</button>
+<ng-template
+  let-observer
+  [tuiDialogOptions]="{label: 'Declarative directive', size: 's'}"
+  [(tuiDialog)]="open"
+>
+  <form
+    [formGroup]="itemForm"
+    (ngSubmit)="observer.complete()"
+  >
+    <p>This abstracts away service and subscription</p>
+    <tui-input
+      formControlName="name"
+      tuiAutoFocus
+    >
+      Some value
+    </tui-input>
+    <tui-input
+      formControlName="describtion"
+      tuiAutoFocus
+    >
+      Some value
+    </tui-input>
+    <tui-input
+      formControlName="cost"
+      tuiAutoFocus
+    >
+      Some value
+    </tui-input>
+    <tui-input
+      formControlName="inventory"
+      tuiAutoFocus
+    >
+      Some value
+    </tui-input>
+    <tui-input
+      formControlName="image"
+      tuiAutoFocus
+    >
+      Some value
+    </tui-input>
+    <p>
+      <button
+        tuiButton
+        type="button"
+        (click)="addProduct()"
+      >
+
+        Ok
+      </button>
+    </p>
+  </form>
+</ng-template>
+
+<table class="tui-table">
+  <tbody>
+  <tr class="tui-table__tr tui-table__tr_border_none">
+    <th class="tui-table__th tui-table__th_first">
+      <tui-checkbox ></tui-checkbox>
+    </th>
+    <th class="tui-table__th"> Name</th>
+    <th class="tui-table__th">Inventory</th>
+    <th class="tui-table__th">Cost</th>
+    <th class="tui-table__th">Describtion</th>
+    <th class="tui-table__th tui-table__th_last">Action</th>
+
+  </tr>
+    @for (item of this.cardServices.productList;track item.id){
+      <tr class="tui-table__tr tui-table__tr_border_none">
+        <td class="tui-table__td tui-table__td_first"></td>
+        <td class="tui-table__td">{{item.name}}</td>
+        <td class="tui-table__td">{{item.inventory}}</td>
+        <td class="tui-table__td">{{item.cost}}</td>
+        <td class="tui-table__td ">{{item.describtion}}</td>
+<td class=" tui-table__td tui-table__td_last">
+  <button
+    appearance="primary"
+    tuiButton
+    type="button"
+    class="tui-space_right-3 tui-space_bottom-3"
+  >
+    Edit
+  </button>
+  <button
+    appearance="primary"
+    tuiButton
+    type="button"
+    class="tui-space_right-3 tui-space_bottom-3"
+  >
+    Delete
+  </button>
+</td>
+      </tr>
+    }
+
+
+  </tbody>
+</table>
+
+
+<dialog #appDialog >
+<form class="form" [formGroup]="itemForm"  (ngSubmit)="addProduct()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      formControlName="name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="describtion">Describtion</label>
+    <input
+      type="text"
+      class="form-control"
+      id="describtion"
+      formControlName="describtion"
+      placeholder="Enter describtion"
+    />
+  </div>
+  <div class="form-group">
+    <label for="cost">Cost</label>
+    <input
+      type="number"
+      class="form-control"
+      id="cost"
+      formControlName="cost"
+      placeholder="Enter cost"
+    />
+  </div>
+  <div class="form-group">
+    <label for="inventory">Inventory</label>
+    <input
+      type="number"
+      class="form-control"
+      id="inventory"
+      formControlName="inventory"
+      placeholder="Enter inventory"
+    />
+  </div>
+  <div class="form-group">
+
+    <label for="image">ImgSrc</label>
+    <input
+      type="text"
+      class="form-control"
+      id="image"
+      formControlName="image"
+      placeholder="Enter Image"
+    />
+  </div>
+</form>
+<button mat-button mat-dialog-close (click)="closeDialog()">Close</button>
+<button
+  (click)="addProduct()"
+  mat-flat-button
+  color="primary"
+>
+  Submit
+</button>
+</dialog>
