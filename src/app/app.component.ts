@@ -1,12 +1,14 @@
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import { TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER } from "@taiga-ui/core";
 import {Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 import {NavbarComponent} from "../components/navbar/navbar.component";
 import {ProductlistComponent} from "../components/productlist/productlist.component";
 import { Product } from '../model/item.model';
 import {CartComponent} from "../components/cart/cart.component";
 import {CartService} from "./service/cart.service";
+import {AuthService} from "./service/auth/auth.service";
+import {getAuth, onAuthStateChanged} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,21 @@ import {CartService} from "./service/cart.service";
 })
 export class AppComponent {
   title = 'shopping';
-constructor(public cardServices:CartService) {
+constructor(public cardServices:CartService, private authService: AuthService, private router: Router) {
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      this.router.navigate(['home']).then();
+      const uid = user.uid;
+      console.log("Login Success")
+      // ...
+    } else {
+      this.router.navigate(['login']).then()
+      console.log("Sign Out")
+    }
+  });
 }
+
+
 
 }

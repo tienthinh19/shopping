@@ -6,7 +6,9 @@ import {Product} from "../../../model/item.model";
 import {FormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CartService} from "../../service/cart.service";
-
+import {TuiButtonModule} from '@taiga-ui/core';
+import {DocumentData} from "@angular/fire/compat/firestore";
+import {SharedModule} from "../../../shared/shared.module";
 
 @Component({
   selector: 'app-admin-product',
@@ -15,8 +17,7 @@ import {CartService} from "../../service/cart.service";
     TuiCheckboxModule,
     ReactiveFormsModule,
     FormsModule,
-    TuiInputModule,
-    TuiDialogModule
+  SharedModule
   ],
   templateUrl: './admin-product.component.html',
   styleUrl: './admin-product.component.scss'
@@ -68,5 +69,60 @@ export class AdminProductComponent {
   showDialog(): void {
     this.open = true;
   }
+  openEdit = false;
 
+  showEditDialog(item:DocumentData): void {
+    this.itemUpdateForm.patchValue(item);
+    this.openEdit = true;
+  }
+
+  itemUpdateForm= new FormGroup({
+    id: new FormControl(0),
+    name : new FormControl('' ),
+    describtion : new FormControl('' ),
+    cost : new FormControl('' ),
+    inventory: new FormControl(0),
+    image: new FormControl('' ),
+    stock: new FormControl(0  ),
+  })
+  //@Output() newItemEvent = new EventEmitter<Product>();
+
+  @ViewChild('updateDialog', { static: true })
+  updatedialog!: ElementRef<HTMLDialogElement>;
+  updatecdr = inject(ChangeDetectorRef);
+
+  openDialogUpdate(item: DocumentData) {
+    selectedItem: item;
+    this.itemUpdateForm.patchValue(
+     item
+    );
+    this.dialog.nativeElement.showModal();
+    this.updatecdr.detectChanges();
+  }
+  closeDialogUpdate() {
+    this.dialog.nativeElement.close();
+    this.updatecdr.detectChanges();
+  }
+
+  updateProduct() {
+    let temp : Product={
+      id:this.itemUpdateForm.value.id || 0 ,
+      image: this.itemUpdateForm.value.image || '',
+      name: this.itemUpdateForm.value.name || '',
+      cost: this.itemUpdateForm.value.cost || '',
+      inventory:this.itemUpdateForm.value.inventory || 0 ,
+      describtion: this.itemUpdateForm.value.describtion || '',
+      stock: this.itemUpdateForm.value.stock || 0 ,
+    };
+    this.cardServices.update(temp).then();
+    this.itemUpdateForm.reset();
+    this.openEdit = false;
+  }
+  updateItem(item:Product){
+    this.cardServices.update(item);
+  }
+  delete(item: DocumentData){
+    console.log(item)
+    this.cardServices.delete(item).then();
+  }
 }

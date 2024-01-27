@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import {CartService} from "../../app/service/cart.service";
 import {ActivatedRoute} from "@angular/router";
+import {FooterComponent} from "../footer/footer.component";
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [],
+  imports: [
+    FooterComponent
+  ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })

@@ -110,8 +110,6 @@ return item;
     if (typeof id === 'string') {
       id = parseInt(id);
     }
-console.log(id)
-
     const product = this.productList.find((item)=>item.id === id)
      console.log(product);
     // console.log(this.productList);
@@ -189,8 +187,8 @@ console.log(id)
         this.cart.splice(index, 1);
         return;
       } else {
-        this.cart[index].inventory--;
-        this.cart[index].stock++;
+        this.cart[index].stock--;
+        this.cart[index].inventory++;
         return;
       }
     }

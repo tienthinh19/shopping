@@ -1,80 +1,77 @@
-<div class="wrap">
-  <div class="search">
-    <input type="text" class="searchTerm" placeholder="What are you looking for?">
-    <button type="submit" class="searchButton">
-      <i class="fa fa-search"></i>
-    </button>
-  </div>
-</div>
+<!--<div class="wrap">-->
+<!--  <div class="search">-->
+<!--    <input type="text" class="searchTerm" placeholder="What are you looking for?">-->
+<!--    <button type="submit" class="searchButton">-->
+<!--      <i class="fa fa-search"></i>-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</div>-->
 <!--<h1>Sách bán chạy</h1>-->
-<div class="content" >
+<!--<div class="content" >-->
+<!--  @for (item of cardServices.productList; track item['name']) {-->
+<!--    @if(item['inventory']>0){-->
+<!--      <div class="card"-->
+
+<!--      >-->
+<!--        <p>{{ item['name'] }}</p>-->
+<!--        <p> {{ item['describtion'] }}</p>-->
+<!--        <div class="image"  (click)="getProductById(item.id)"-->
+<!--             [routerLink]="['/card',item.id]">-->
+
+<!--          <img src="{{item['image']}}" alt="book" width="250" />-->
+<!--        </div>-->
+<!--        <div class="menu">-->
+<!--          <div class="price">-->
+<!--            {{ item['cost'] }}VND-->
+<!--          </div>-->
+<!--          <div class="price">-->
+<!--            {{ item['inventory'] }}-->
+<!--          </div>-->
+<!--          <div class="btn">-->
+<!--            <button-->
+<!--              (click)="this.cardServices.addToCart(item)"-->
+<!--              >Add to Cart!-->
+<!--            </button>-->
+<!--&lt;!&ndash;            <button&ndash;&gt;-->
+<!--&lt;!&ndash;              (click)="openDialog(item)">Edit&ndash;&gt;-->
+<!--&lt;!&ndash;            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;            <button&ndash;&gt;-->
+<!--&lt;!&ndash;    (click)="delete(item)"&ndash;&gt;-->
+<!--&lt;!&ndash;            >Delete&ndash;&gt;-->
+<!--&lt;!&ndash;            </button>&ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    }-->
+<!--  }-->
+<!--</div>-->
+
+
+<div class="tui-col_md-4">
   @for (item of cardServices.productList; track item['name']) {
     @if(item['inventory']>0){
-      <div class="card"
+      <tui-island >
 
-      >
-        <p>{{ item['name'] }}</p>
-        <p> {{ item['describtion'] }}</p>
-        <div class="image"  (click)="getProductById(item.id)"
-             [routerLink]="['/card',item.id]">
+        <div class="image">
+          <img src="{{item['image']}}">
+        </div>
 
-          <img src="{{item['image']}}" alt="book" width="250" />
-        </div>
-        <div class="menu">
-          <div class="price">
-            {{ item['cost'] }}VND
-          </div>
-          <div class="price">
-            {{ item['inventory'] }}
-          </div>
-          <div class="btn">
-            <button
-              (click)="this.cardServices.addToCart(item)"
-              >Add to Cart!
-            </button>
-            <button
-              (click)="openDialog(item)">Edit
-            </button>
-            <button
-    (click)="delete(item)"
-            >Delete
-            </button>
-          </div>
-        </div>
-      </div>
+        <h3 class="tui-island__title">{{item.name}}</h3>
+        <p class="tui-island__paragraph">
+          {{item.cost}} VND
+        </p>
+        <button
+          appearance="flat"
+          size="m"
+          tuiButton
+          id="btnCard"
+          type="button"
+          class="tui-island__footer-button"
+          (click)="this.cardServices.addToCart(item)"
+        >
+          Add to Cart
+        </button>
+      </tui-island>
     }
   }
-
 </div>
-
-
-<dialog #appDialog>
-  <form class="form" [formGroup]="itemForm" (ngSubmit)="updateProduct()">
-    <div class="form-group">
-      <label for="cost">Name</label>
-      <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter name" />
-    </div>
-    <div class="form-group">
-      <label for="cost">Describtion</label>
-      <input type="text" class="form-control" id="describtion" formControlName="describtion" placeholder="Enter describtion" />
-    </div>
-    <div class="form-group">
-      <label for="cost">Cost</label>
-      <input type="number" class="form-control" id="cost" formControlName="cost" placeholder="Enter cost" />
-    </div>
-    <div class="form-group">
-      <label for="inventory">Inventory</label>
-      <input type="number" class="form-control" id="inventory" formControlName="inventory"
-             placeholder="Enter inventory" />
-    </div>
-    <div class="form-group">
-
-      <label for="image">ImgSrc</label>
-      <input type="text" class="form-control" id="image" formControlName="image" placeholder="Enter Image" />
-    </div>
-  </form>
-  <button mat-button mat-dialog-close (click)="closeDialog()">Close</button>
-  <button (click)="updateProduct()" mat-flat-button color="primary">
-    Submit
-  </button>
-</dialog>

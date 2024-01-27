@@ -1,4 +1,18 @@
-<app-productlist >
+<div id="container">
+  <div id="top">
 
-</app-productlist>
-<!--[productlist]="this.cardServices.productList" (newItemEvent)="this.cardServices.delete($event)" (productadd)="this.cardServices.addToCart($event)">-->
+    <app-navbar ></app-navbar>
+  </div>
+  <div id="body">
+    <!--<app-productlist >-->
+    <!--</app-productlist>-->
+    <router-outlet>
+
+    </router-outlet>
+  </div>
+ <div id="under">
+   <app-footer></app-footer>
+ </div>
+
+
+</div>

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, ɵValue} from "@angular/for
 import {Product} from "../../model/item.model";
 import {Router, RouterLink} from "@angular/router";
 import {CartService} from "../../app/service/cart.service";
+import {AuthService} from "../../app/service/auth/auth.service";
 
 
 export interface menuItem{
@@ -23,7 +24,7 @@ router: string
 export class NavbarComponent {
   menuItems:menuItem[] = [
     {
-      name: "HOME",classIcon:"fa-solid fa-house",active:true,router: ''
+      name: "HOME",classIcon:"fa-solid fa-house",active:true,router: 'productlist'
     },
     {name: "NEWS",classIcon:"fa-regular fa-newspaper", active: false, router:''},
     {
@@ -33,10 +34,10 @@ export class NavbarComponent {
       name:"ABOUT",classIcon:"fa-solid fa-info",active: false,router:''
     },
     {
-      name:"CART",classIcon:"fa-solid fa-cart-shopping",active: false,router:'/card'
+      name:"CART",classIcon:"fa-solid fa-cart-shopping",active: false,router:'cart'
     },
     {
-      name:"ADMIN-PRODUCT",classIcon:"fa-solid fa-user-tie",active: false,router:'/admin_product'
+      name:"ADMIN-PRODUCT",classIcon:"fa-solid fa-user-tie",active: false,router:'admin'
     }
   ]
   selectItem (Itemseletc : menuItem){
@@ -51,8 +52,12 @@ export class NavbarComponent {
   @Output() newItemEvent = new EventEmitter<Product>();
 
 
-constructor(public router:Router,public cardServices:CartService) {
+constructor(public router:Router,public cardServices:CartService, private auth: AuthService) {
 
+}
+
+signOut(){
+  this.auth.signOut();
 }
 
 }
