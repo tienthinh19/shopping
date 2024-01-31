@@ -208,7 +208,7 @@ return item;
   payment() {
     this.total = 0;
     this.cart.forEach((e) => {
-      this.total += e.stock * parseInt(e.cost);
+      this.total += e.stock * e.cost;
     });
     return this.total;
   }

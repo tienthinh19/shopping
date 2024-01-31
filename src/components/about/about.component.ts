@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import {CartService} from "../../app/service/cart.service";
 import {ActivatedRoute} from "@angular/router";
 import {FooterComponent} from "../footer/footer.component";
+import {SharedModule} from "../../shared/shared.module";
+
 
 @Component({
   selector: 'app-about',
   standalone: true,
   imports: [
-    FooterComponent
+    FooterComponent,
+ SharedModule
   ],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'

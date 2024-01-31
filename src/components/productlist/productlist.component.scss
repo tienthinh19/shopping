@@ -408,7 +408,8 @@ width: 100%;
 }
 tui-island{
   max-width: 400px;
-  max-height: 400px;
+  max-height: 395px;
+
 }
 .image{
   height: 200px;
@@ -436,4 +437,12 @@ img{
   max-width: 400px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.tui-island__footer-button{
+
+}
+.input{
+  margin-top: 20px;
 }

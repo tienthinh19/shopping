@@ -1,13 +1,34 @@
-<button
-  size="m"
-  tuiButton
-  tuiHint="Some text"
-  tuiHintDirection="top"
-  type="button"
-  (click)="showDialog()"
->
-  Add
-</button>
+<div class="search">
+   <tui-input
+   tuiHintContent=" Search"
+    tuiHintDirection="bottom-right"
+    tuiTextfieldIconLeft="tuiIconSearchLarge"
+    class="input"
+    [tuiTextfieldCleaner]="true"
+
+  >
+    Search
+    <input
+      placeholder="search now"
+      tuiTextfield
+    />
+  </tui-input>
+
+  <button
+    size="m"
+    tuiButton
+    tuiHint="Some text"
+    tuiHintDirection="top"
+    type="button"
+    class="addbutton"
+    (click)="showDialog()"
+  >
+    Add
+  </button>
+</div>
+
+
+
 
 
 <ng-template
@@ -69,12 +90,13 @@
 
 <table class="tui-table">
   <tbody>
+
   <tr class="tui-table__tr tui-table__tr_border_none">
 
     <th class="tui-table__th"> Name</th>
     <th class="tui-table__th">Inventory</th>
     <th class="tui-table__th">Cost</th>
-    <th class="tui-table__th">Describtion</th>
+    <th class="tui-table__th" >Describtion</th>
     <th class="tui-table__th tui-table__th_last">Action</th>
 
   </tr>
@@ -84,7 +106,7 @@
         <td class="tui-table__td">{{item.name}}</td>
         <td class="tui-table__td">{{item.inventory}}</td>
         <td class="tui-table__td">{{item.cost}}</td>
-        <td class="tui-table__td ">{{item.describtion}}</td>
+        <td class="tui-table__td" id="des">{{item.describtion}}</td>
         <td class=" tui-table__td tui-table__td_last">
           <button
             appearance="primary"

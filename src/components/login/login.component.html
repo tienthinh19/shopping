@@ -17,6 +17,17 @@
     <h1>ABC web</h1>
     <div class="sigin">
       <h2>Sign in</h2>
+<!--      <form-->
+<!--        class="b-form"-->
+<!--      >-->
+<!--        <tui-input formControlName="testValue">-->
+<!--          Type an email-->
+<!--          <input-->
+<!--            tuiTextfield-->
+<!--            type="email"-->
+<!--          />-->
+<!--        </tui-input>-->
+<!--      </form>-->
       <tui-input >
         Type an Email
         <input
@@ -29,22 +40,29 @@
       <tui-input >
         Type an Password
         <input
-          autocomplete="password"
-          translate="no"
           tuiTextfield
           type="password"
         />
       </tui-input>
       <button
+        
         tuiButton
         type="button"
         class="tui-space_right-3 tui-space_bottom-3"
       >
-        primary
+        Sign In
       </button>
       <button
-       (click)="signWithGoogle()"
-      >Sign With Google</button>
+        tuiButton
+        type="button"
+        class="tui-space_right-3 tui-space_bottom-3"
+        (click)="signWithGoogle()"
+      >
+        Sign With Google
+      </button>
+<!--      <button-->
+<!--       (click)="signWithGoogle()"-->
+<!--      >Sign With Google</button>-->
     </div>
 
   </div>

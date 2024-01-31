@@ -5,6 +5,7 @@ import {CartService} from "../../service/cart.service";
 import {FooterComponent} from "../../../components/footer/footer.component";
 import {NavbarComponent} from "../../../components/navbar/navbar.component";
 import {RouterOutlet} from "@angular/router";
+import {AboutComponent} from "../../../components/about/about.component";
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ import {RouterOutlet} from "@angular/router";
     ProductlistComponent,
     FooterComponent,
     NavbarComponent,
-    RouterOutlet
+    RouterOutlet,
+    AboutComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

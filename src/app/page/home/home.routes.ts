@@ -24,6 +24,9 @@ const routes: Routes = [
         path:'cart',component: CartComponent
       },
       {
+        path:'detail/:id',component:AboutComponent
+      },
+      {
         path:'',
         redirectTo: 'productlist',
         pathMatch: "full"
@@ -32,9 +35,7 @@ const routes: Routes = [
   },
 
 
-  {
-    path:'card/:id',component:AboutComponent
-  },
+
 
 ];
 

@@ -16,7 +16,8 @@ import {CartService} from "../../app/service/cart.service";
 import {DocumentData} from "@angular/fire/compat/firestore";
 import {TuiAvatarModule, TuiBadgeModule} from "@taiga-ui/kit";
 import {SharedModule} from "../../shared/shared.module";
-
+import {Store} from "@ngrx/store";
+import * as  CartAction from "../../ngrx/cart/cart.action"
 
 @Component({
   selector: 'app-productlist',
@@ -34,9 +35,9 @@ import {SharedModule} from "../../shared/shared.module";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductlistComponent  {
-//   @Input() productlist: Product[] = [];
-  constructor(public router:Router,public cardServices:CartService) {
-
+    productlist: Product[] = [];
+  constructor(public router:Router,public cardServices:CartService,private store: Store) {
+this.productlist=this.cardServices.productList;
   }
   readonly urls = [
     'https://avatars.githubusercontent.com/u/11832552',
@@ -89,7 +90,7 @@ export class ProductlistComponent  {
      id:this.itemForm.value.id || 0 ,
      image: this.itemForm.value.image || '',
      name: this.itemForm.value.name || '',
-     cost: this.itemForm.value.cost || '',
+     cost:0,
 
      inventory:this.itemForm.value.inventory || 0 ,
      describtion: this.itemForm.value.describtion || '',
@@ -108,6 +109,12 @@ updateItem(item:Product){
 }
 getProductById(id:number){
     console.log(id);
-    this.cardServices.getItemById(id)
+    this.router.navigate(['home/detail',id])
 }
+  buy(product: DocumentData) {
+    this.store.dispatch(
+      CartAction.addProduct({ product: product as Product })
+    );
+  }
+
  }

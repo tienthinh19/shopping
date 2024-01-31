@@ -45,14 +45,28 @@
 <!--    }-->
 <!--  }-->
 <!--</div>-->
+<tui-input
+  tuiHintContent=" Search"
+  tuiHintDirection="bottom-right"
+  tuiTextfieldIconLeft="tuiIconSearchLarge"
+  class="input"
+  [tuiTextfieldCleaner]="true"
 
+>
+  Search
+  <input
+    placeholder="search now"
+    tuiTextfield
+  />
+</tui-input>
 
 <div class="tui-col_md-4">
   @for (item of cardServices.productList; track item['name']) {
     @if(item['inventory']>0){
       <tui-island >
 
-        <div class="image">
+        <div class="image" (click)="getProductById(item.id)"
+             [routerLink]="['/detail',item.id]">
           <img src="{{item['image']}}">
         </div>
 
@@ -61,14 +75,15 @@
           {{item.cost}} VND
         </p>
         <button
-          appearance="flat"
+          appearance="accent"
           size="m"
           tuiButton
           id="btnCard"
           type="button"
           class="tui-island__footer-button"
-          (click)="this.cardServices.addToCart(item)"
-        >
+          (click)="buy(item)">
+<!--          (click)="this.cardServices.addToCart(item)"-->
+
           Add to Cart
         </button>
       </tui-island>

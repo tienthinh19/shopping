@@ -9,11 +9,15 @@ import {CartComponent} from "../components/cart/cart.component";
 import {CartService} from "./service/cart.service";
 import {AuthService} from "./service/auth/auth.service";
 import {getAuth, onAuthStateChanged} from "@angular/fire/auth";
+import {CouterComponent} from "../components/couter/couter.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, ProductlistComponent, CartComponent, TuiRootModule, TuiDialogModule, TuiAlertModule],
+  imports: [RouterOutlet, NavbarComponent, ProductlistComponent, CartComponent, TuiRootModule, TuiDialogModule, TuiAlertModule,
+  CouterComponent
+
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
     providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}]

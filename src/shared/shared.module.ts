@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {TuiAvatarModule, TuiIslandModule} from '@taiga-ui/kit';
-import { TuiLinkModule } from '@taiga-ui/core';
+import {TuiDropdownModule, TuiLinkModule, TuiSvgModule} from '@taiga-ui/core';
 import { TuiButtonModule } from '@taiga-ui/core';
 import { TuiCheckboxLabeledModule } from '@taiga-ui/kit';
 import { TuiInputModule } from '@taiga-ui/kit';
@@ -28,10 +28,11 @@ import { TuiScrollbarModule } from '@taiga-ui/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TuiDialogModule } from '@taiga-ui/core';
 import { TuiLabelModule } from '@taiga-ui/core';
+import { AsyncPipe } from '@angular/common';
 
 const TaigaModules = [
   TuiCardModule,
-
+  TuiSvgModule,
   TuiIslandModule,
   TuiLinkModule,
   TuiButtonModule,
@@ -59,6 +60,7 @@ const TaigaModules = [
   TuiDialogModule,
   TuiLabelModule,
   TuiAvatarModule,
+  TuiDropdownModule
 
 ];
 
@@ -70,7 +72,7 @@ const TaigaModules = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-
+    AsyncPipe,
     ...TaigaModules,
   ],
   exports: [
@@ -79,6 +81,7 @@ const TaigaModules = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    AsyncPipe,
     ...TaigaModules,
   ],
 })
