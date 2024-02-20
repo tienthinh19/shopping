@@ -41,7 +41,7 @@ export class AdminProductComponent {
     // id : Math.floor(Math.random() * 1000),
     name : new FormControl(''),
     describtion : new FormControl(''),
-    cost : new FormControl(''),
+    cost : new FormControl(0),
     inventory: new FormControl(''),
     image: new FormControl(''),
   })
@@ -50,7 +50,7 @@ export class AdminProductComponent {
       id:0 ,
       image: this.itemForm.value.image || '',
       name: this.itemForm.value.name || '',
-      cost:  0,
+      cost:  this.itemForm.value.cost || 0,
       inventory: 10,
       describtion: this.itemForm.value.describtion || '',
       stock: 0,
@@ -80,7 +80,7 @@ export class AdminProductComponent {
     id: new FormControl(0),
     name : new FormControl('' ),
     describtion : new FormControl('' ),
-    cost : new FormControl('' ),
+    cost : new FormControl(0 ),
     inventory: new FormControl(0),
     image: new FormControl('' ),
     stock: new FormControl(0  ),
@@ -109,17 +109,15 @@ export class AdminProductComponent {
       id:this.itemUpdateForm.value.id || 0 ,
       image: this.itemUpdateForm.value.image || '',
       name: this.itemUpdateForm.value.name || '',
-      cost:  0,
+      cost:  this.itemUpdateForm.value.cost || 0,
       inventory:this.itemUpdateForm.value.inventory || 0 ,
       describtion: this.itemUpdateForm.value.describtion || '',
       stock: this.itemUpdateForm.value.stock || 0 ,
     };
+    console.log(temp);
     this.cardServices.update(temp).then();
     this.itemUpdateForm.reset();
     this.openEdit = false;
-  }
-  updateItem(item:Product){
-    this.cardServices.update(item);
   }
   delete(item: DocumentData){
     console.log(item)
